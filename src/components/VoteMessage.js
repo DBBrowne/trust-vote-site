@@ -21,7 +21,7 @@ class VoteMessage extends React.Component {
     errorMessage: '',
   };
 
-  copyToClipboard = event => {
+  copyToClipboard = (event) => {
     copy(this.props.payload);
   };
 
@@ -44,7 +44,7 @@ class VoteMessage extends React.Component {
     return ok;
   };
 
-  submitVote = async event => {
+  submitVote = async (event) => {
     const { payload } = this.props;
     const { signature, address } = this.state;
 
@@ -53,9 +53,12 @@ class VoteMessage extends React.Component {
       return this.setState({ errorMessage: 'Fields cannot be empty' });
     }
 
-    const isValidAddr = dashcore.Address.isValid(address, 'mainnet');
+    const dashnet = process.env.REACT_APP_DASH_NETWORK || 'testnet';
+    const isValidAddr = dashcore.Address.isValid(address, dashnet);
     if (!isValidAddr) {
-      return this.setState({ errorMessage: 'Invalid Dash Address' });
+      return this.setState({
+        errorMessage: `Invalid Dash Address (not ${dashnet})`,
+      });
     }
 
     const msg = dashcore.Message(payload);
@@ -100,15 +103,15 @@ class VoteMessage extends React.Component {
     }
   };
 
-  onAddressChange = event => {
+  onAddressChange = (event) => {
     this.setState({ address: event.target.value.trim() });
   };
 
-  onSignatureChange = event => {
+  onSignatureChange = (event) => {
     this.setState({ signature: event.target.value.trim() });
   };
 
-  onFormSubmit = event => {
+  onFormSubmit = (event) => {
     event.preventDefault();
   };
 
