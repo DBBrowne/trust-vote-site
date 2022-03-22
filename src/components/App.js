@@ -6,12 +6,12 @@ import { ReactComponent as Logo } from '../logo.svg';
 class App extends React.Component {
   state = { payload: '', voteMessageVisible: false, activeStep: 1 };
 
-  setMessage = message => {
+  setMessage = (message) => {
     this.setState({ payload: message });
     this.moveToStep(2);
   };
 
-  moveToStep = stepNumber => {
+  moveToStep = (stepNumber) => {
     let voteMessageVisible = false;
     switch (stepNumber) {
       case 1:
@@ -34,6 +34,18 @@ class App extends React.Component {
     return (
       <div className="ui container" style={{ marginTop: '20px' }}>
         <Logo style={{ width: '200px', height: 'auto', marginTop: '20px' }} />
+        <p>
+          This voting tool is hosted by the Dash Incubator, the Trust Protector
+          provided URL (vote.dashtrust.org) is provided for convenience.
+        </p>
+        <p>
+          Read about the process on the <strong>Dash Newsroom</strong>
+          : <br />
+          <a href="https://newsroom.dash.org/preview/OwOkLMWwK7rTwVS6_lzcZQ">
+            https://newsroom.dash.org/preview/OwOkLMWwK7rTwVS6_lzcZQ
+          </a>
+        </p>
+        <p>The Trust Protectors are not hosting or running this election.</p>
         <CandidateSelector
           label="1. Choose your candidate(s), (select as many as you want):"
           setMessage={this.setMessage}

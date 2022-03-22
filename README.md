@@ -85,8 +85,8 @@ IIm+2++GxT4OtTTY4aZK0iKIWh21yxiwomfY76l197qtVB42KVpy53QxS65zq1R9eN2XLcGh2YsedsVt
    # season to taste
    PUBLIC_URL='https://vote.example.com'
 
-   # show the candidates or "voting is closed"
-   REACT_APP_ALLOW_VOTING='true'
+   # show the applications ('pre'), candidates ('open') or "voting is closed" ('closed')
+   REACT_APP_VOTING_STATE='open'
 
    # a unique vote identifier as part of the message hash
    REACT_APP_VOTE_PREFIX='dte2022-'

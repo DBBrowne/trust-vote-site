@@ -8,13 +8,18 @@ import {
   Dimmer,
   Header,
 } from 'semantic-ui-react';
-import CandidateOptions from '../candidates.json';
 import CandidateList from './CandidateList';
 
 let votePre = process.env.REACT_APP_VOTE_PREFIX;
+let apiUrl = process.env.REACT_APP_API_URL;
 
 class CandidateSelector extends React.Component {
-  state = { searchQuery: '', value: new Set(), message: votePre };
+  state = {
+    candidates: [],
+    searchQuery: '',
+    value: new Set(),
+    message: votePre,
+  };
 
   // The message prefix is pre-pended to the message to be signed. This should
   // be unique per application, not generic. For more info, see:
@@ -28,12 +33,36 @@ class CandidateSelector extends React.Component {
   };
   onSearchChange = (e, { searchQuery }) => this.setState({ searchQuery });
 
-  onResetButtonClick = event => {
+  componentDidMount = async function () {
+    let me = this;
+
+    let resp = await window.fetch(`${apiUrl}/api/candidates`, { mode: 'cors' });
+    let data = await resp.json().catch(function (err) {
+      return [
+        {
+          name: err.message || err.toString(),
+          handle: err.name || err.type,
+        },
+      ];
+    });
+    me.setState({
+      candidates: data.map(function (c) {
+        return {
+          alias: c.handle,
+          text: c.name,
+          key: c.handle,
+          value: c.handle,
+        };
+      }),
+    });
+  };
+
+  onResetButtonClick = (event) => {
     console.log('Clicked reset button');
     this.props.twoStep(1);
   };
 
-  onButtonPress = event => {
+  onButtonPress = (event) => {
     // const message = this.messagePrefix + [...value].join('|');
 
     // Previously this was used to ensure some candidate was selected -- but an
@@ -72,7 +101,7 @@ class CandidateSelector extends React.Component {
         <Label ribbon>{labelText}</Label>
         <Divider hidden />
         <CandidateList
-          candidates={CandidateOptions}
+          candidates={this.state.candidates}
           onChange={this.onCheckboxChange}
         />
         <Divider hidden />
