@@ -88,6 +88,10 @@ IIm+2++GxT4OtTTY4aZK0iKIWh21yxiwomfY76l197qtVB42KVpy53QxS65zq1R9eN2XLcGh2YsedsVt
    # show the applications ('pre'), candidates ('open') or "voting is closed" ('closed')
    REACT_APP_VOTING_STATE='open'
 
+   REACT_APP_API_URL='https://vote-api.example.com'
+
+   REACT_APP_CANDIDACY_FORM_URL='https://docs.google.com/forms/...'
+
    # a unique vote identifier as part of the message hash
    REACT_APP_VOTE_PREFIX='dte2022-'
 

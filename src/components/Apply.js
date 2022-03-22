@@ -1,6 +1,8 @@
 import React from 'react';
 import { ReactComponent as Logo } from '../logo.svg';
 
+let candidacyFormUrl = process.env.REACT_APP_CANDIDACY_FORM_URL;
+
 class Apply extends React.Component {
   state = { payload: '', voteMessageVisible: false, activeStep: 1 };
 
@@ -20,9 +22,7 @@ class Apply extends React.Component {
         <p>
           See the <strong>Dash Trust Protector Candidacy Form</strong>
           : <br />
-          <a href="https://docs.google.com/forms/d/1USpb9TErKa6kRsxNVVOZaf4GbtfPr5w6O2iQAgCuhqM/viewform?edit_requested=true">
-            https://docs.google.com/forms/d/1USpb9TErKa6kRsxNVVOZaf4GbtfPr5w6O2iQAgCuhqM/viewform
-          </a>
+          <a href={candidacyFormUrl}>{candidacyFormUrl}</a>
         </p>
         <h2>Election Schedule</h2>
         <p>Dash Trust Protectors 2022 Election Schedule</p>
