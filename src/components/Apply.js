@@ -2,6 +2,7 @@ import React from 'react';
 import { ReactComponent as Logo } from '../logo.svg';
 
 let candidacyFormUrl = process.env.REACT_APP_CANDIDACY_FORM_URL;
+let announcmentUrl = process.env.REACT_APP_ANNOUNCMENT_URL;
 
 class Apply extends React.Component {
   state = { payload: '', voteMessageVisible: false, activeStep: 1 };
@@ -15,9 +16,7 @@ class Apply extends React.Component {
         <p>
           Read about the process on the <strong>Dash Newsroom</strong>
           : <br />
-          <a href="https://newsroom.dash.org/preview/OwOkLMWwK7rTwVS6_lzcZQ">
-            https://newsroom.dash.org/preview/OwOkLMWwK7rTwVS6_lzcZQ
-          </a>
+          <a href={announcmentUrl}>{announcmentUrl}</a>
         </p>
         <p>
           See the <strong>Dash Trust Protector Candidacy Form</strong>
