@@ -1,4 +1,5 @@
 # .prettierrc.yaml
+esversion: 11
 trailingComma: "es5"
 tabWidth: 2
 semi: true
