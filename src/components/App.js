@@ -3,6 +3,8 @@ import CandidateSelector from './CandidateSelector';
 import VoteMessage from './VoteMessage';
 import { ReactComponent as Logo } from '../logo.svg';
 
+let announcmentUrl = process.env.REACT_APP_ANNOUNCMENT_URL;
+
 class App extends React.Component {
   state = { payload: '', voteMessageVisible: false, activeStep: 1 };
 
@@ -41,9 +43,14 @@ class App extends React.Component {
         <p>
           Read about the process on the <strong>Dash Newsroom</strong>
           : <br />
-          <a href="https://newsroom.dash.org/preview/OwOkLMWwK7rTwVS6_lzcZQ">
-            https://newsroom.dash.org/preview/OwOkLMWwK7rTwVS6_lzcZQ
-          </a>
+          <a href={announcmentUrl}>{announcmentUrl}</a>
+        </p>
+        <p>
+          Voting ends on April 14, 2022 at 23:59:59 UTC:
+          <br />
+          <strong>
+            <span data-time-remaining></span>
+          </strong>
         </p>
         <p>The Trust Protectors are not hosting or running this election.</p>
         <CandidateSelector

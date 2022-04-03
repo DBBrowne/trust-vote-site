@@ -92,6 +92,9 @@ IIm+2++GxT4OtTTY4aZK0iKIWh21yxiwomfY76l197qtVB42KVpy53QxS65zq1R9eN2XLcGh2YsedsVt
 
    REACT_APP_CANDIDACY_FORM_URL='https://docs.google.com/forms/...'
 
+   # the ISO+Offset time when voting will end
+   REACT_APP_VOTING_END_DATE='2022-04-15T00:00:00Z'
+
    # a unique vote identifier as part of the message hash
    REACT_APP_VOTE_PREFIX='dte2022-'
 
