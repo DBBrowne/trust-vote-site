@@ -85,14 +85,12 @@ IIm+2++GxT4OtTTY4aZK0iKIWh21yxiwomfY76l197qtVB42KVpy53QxS65zq1R9eN2XLcGh2YsedsVt
    # season to taste
    PUBLIC_URL='https://vote.example.com'
 
-   # show the applications ('pre'), candidates ('open') or "voting is closed" ('closed')
-   REACT_APP_VOTING_STATE='open'
-
    REACT_APP_API_URL='https://vote-api.example.com'
 
    REACT_APP_CANDIDACY_FORM_URL='https://docs.google.com/forms/...'
 
-   # the ISO+Offset time when voting will end
+   # the ISO+Offset time when voting will start and end
+   REACT_APP_VOTING_END_DATE='2022-04-03T00:00:00Z'
    REACT_APP_VOTING_END_DATE='2022-04-15T00:00:00Z'
 
    # a unique vote identifier as part of the message hash

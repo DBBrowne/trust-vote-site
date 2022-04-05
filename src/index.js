@@ -5,22 +5,27 @@ import Apply from './components/Apply';
 import Closed from './components/Closed';
 
 console.log(
-  'REACT_APP_VOTING_STATE:',
-  JSON.stringify(process.env.REACT_APP_VOTING_STATE, null, 2)
+  'REACT_APP_VOTING_START_DATE:',
+  JSON.stringify(process.env.REACT_APP_VOTING_START_DATE, null, 2)
+);
+console.log(
+  'REACT_APP_VOTING_END_DATE:',
+  JSON.stringify(process.env.REACT_APP_VOTING_END_DATE, null, 2)
 );
 
-let app;
-switch (process.env.REACT_APP_VOTING_STATE) {
-  case 'pre':
-    app = <Apply />;
-    break;
-  case 'open':
-    app = <App />;
-    break;
-  case 'closed':
-  /* falls through */
-  default:
-    app = <Closed />;
+let votingStart = new Date(process.env.REACT_APP_VOTING_START_DATE).valueOf();
+let votingEnd = new Date(process.env.REACT_APP_VOTING_END_DATE).valueOf();
+let now = Date.now();
+
+// guarding against the possible NaN condition
+let started = now - votingStart >= 0;
+let ended = votingEnd - now < 0;
+
+let app = <Closed />;
+if (!started) {
+  app = <Apply />;
+} else if (!ended) {
+  app = <App />;
 }
 
 function runCountdown() {
