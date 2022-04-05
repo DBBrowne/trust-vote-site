@@ -140,7 +140,7 @@ class VoteMessage extends React.Component {
         <Form onSubmit={this.onFormSubmit}>
           <Input
             fluid
-            placeholder="Masternode Collateral Address"
+            placeholder="Masternode Voting Address"
             value={this.state.address}
             onChange={this.onAddressChange}
           />
