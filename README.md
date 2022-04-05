@@ -41,6 +41,12 @@ dashmsg sign ./private-key.wif  "dte2019-efigaro|lcole|sfigaro|cchere"
 H3B3fGVZM2joBDmuTptj7gPI0bTFWWE1YZEPoB/5TtYudBRmiP0zszPmtUPqVQJrQzzL2rVgEOdcUAcZNbEzne0=
 ```
 
+Hint: If you've forgotten your voting address, you can look it up by your server's IP address in the masternode list:
+
+```bash
+dash-cli masternodelist json 'ENABLED'
+```
+
 ## Project Structure
 
 ```txt
