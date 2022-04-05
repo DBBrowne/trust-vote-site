@@ -4,10 +4,16 @@
 
 Uses `@dashevo/dashcore-lib` to verify signatures in-browser.
 
-_Hint_: Messages are signed the same as with `dash-cli`:
+_Hint_: Messages are signed the same in Dash-QT as with `dash-cli`:
+
+`./private-key.wif`:
+
+```txt
+XK5DHnAiSj6HQNsNcDkawd9qdp8UFMdYftdVZFuRreTMJtbJhk8i
+```
 
 ```bash
-my_private_key='XK5DHnAiSj6HQNsNcDkawd9qdp8UFMdYftdVZFuRreTMJtbJhk8i'
+my_private_key="$(cat ./private-key.wif)"
 
 my_vote='dte2019-efigaro|lcole|sfigaro|cchere'
 
@@ -17,7 +23,22 @@ dash-cli signmessagewithprivkey \
 ```
 
 ```txt
-IIm+2++GxT4OtTTY4aZK0iKIWh21yxiwomfY76l197qtVB42KVpy53QxS65zq1R9eN2XLcGh2YsedsVtsmrw2OE=
+H3B3fGVZM2joBDmuTptj7gPI0bTFWWE1YZEPoB/5TtYudBRmiP0zszPmtUPqVQJrQzzL2rVgEOdcUAcZNbEzne0=
+```
+
+Alternatively, you can use `dashmsg`:
+
+```bash
+curl https://webinstall.dev/dashmsg | bash
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+```bash
+dashmsg sign ./private-key.wif  "dte2019-efigaro|lcole|sfigaro|cchere"
+```
+
+```txt
+H3B3fGVZM2joBDmuTptj7gPI0bTFWWE1YZEPoB/5TtYudBRmiP0zszPmtUPqVQJrQzzL2rVgEOdcUAcZNbEzne0=
 ```
 
 ## Project Structure
@@ -95,6 +116,8 @@ IIm+2++GxT4OtTTY4aZK0iKIWh21yxiwomfY76l197qtVB42KVpy53QxS65zq1R9eN2XLcGh2YsedsVt
 
    # a unique vote identifier as part of the message hash
    REACT_APP_VOTE_PREFIX='dte2022-'
+
+   REACT_APP_DASH_NETWORK='testnet'
 
    # additional REACT_APP_* will be made available to the browser
    ```
