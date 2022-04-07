@@ -1,9 +1,13 @@
 import React from 'react';
-import CandidateSelector from './CandidateSelector';
-import VoteMessage from './VoteMessage';
-import { ReactComponent as Logo } from '../logo.svg';
 
-let announcmentUrl = process.env.REACT_APP_ANNOUNCMENT_URL;
+import Countdown from './countdown/Countdown';
+import CandidateSelector from './CandidateSelector';
+import { ReactComponent as Logo } from '../logo.svg';
+import VoteMessage from './VoteMessage';
+
+const announcementUrl = process.env.REACT_APP_ANNOUNCMENT_URL;
+// voting end date, less 1 millisecond for display clarity.
+const votingEnd = new Date(new Date(process.env.REACT_APP_VOTING_END_DATE) - 1);
 
 class App extends React.Component {
   state = { payload: '', voteMessageVisible: false, activeStep: 1 };
@@ -43,14 +47,12 @@ class App extends React.Component {
         <p>
           Read about the process on the <strong>Dash Newsroom</strong>
           : <br />
-          <a href={announcmentUrl}>{announcmentUrl}</a>
+          <a href={announcementUrl}>{announcementUrl}</a>
         </p>
         <p>
           Voting ends on April 14, 2022 at 23:59:59 UTC:
           <br />
-          <strong>
-            <span data-time-remaining></span>
-          </strong>
+          <strong><Countdown target={votingEnd}/></strong>
         </p>
 
         <p>The Trust Protectors are not hosting or running this election.</p>
