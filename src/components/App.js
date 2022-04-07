@@ -9,6 +9,18 @@ const announcementUrl = process.env.REACT_APP_ANNOUNCMENT_URL;
 // voting end date, less 1 millisecond for display clarity.
 const votingEnd = new Date(new Date(process.env.REACT_APP_VOTING_END_DATE) - 1);
 
+const endDateOptions = { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' };
+const endTimeOptions = {
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+  hour12: false,
+  timeZone: 'UTC',
+  timeZoneName: 'short', 
+};
+const votingEndDateString = votingEnd.toLocaleString('en-US', endDateOptions);
+const votingEndTimeString = votingEnd.toLocaleString('en-US', endTimeOptions);
+
 class App extends React.Component {
   state = { payload: '', voteMessageVisible: false, activeStep: 1 };
 
@@ -50,7 +62,7 @@ class App extends React.Component {
           <a href={announcementUrl}>{announcementUrl}</a>
         </p>
         <p>
-          Voting ends on April 14, 2022 at 23:59:59 UTC:
+          Voting ends on {votingEndDateString}, at {votingEndTimeString}:
           <br />
           <strong><Countdown target={votingEnd}/></strong>
         </p>
