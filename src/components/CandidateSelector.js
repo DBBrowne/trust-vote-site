@@ -48,10 +48,10 @@ class CandidateSelector extends React.Component {
     me.setState({
       candidates: data.map(function (c) {
         return {
-          alias: c.handle,
-          text: c.name,
-          key: c.handle,
-          value: c.handle,
+          handle: c.handle,
+          name: c.name,
+          link: c.link,
+          trust_protector: c.trust_protector,
         };
       }),
     });

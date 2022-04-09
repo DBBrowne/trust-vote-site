@@ -52,7 +52,37 @@ class App extends React.Component {
             <span data-time-remaining></span>
           </strong>
         </p>
+
         <p>The Trust Protectors are not hosting or running this election.</p>
+
+        <p>
+          The{' '}
+          <a href="https://github.com/dashhive/trust-vote-site/blob/master/README.md">
+            source
+          </a>{' '}
+          of this election site is available at{' '}
+          <a href="https://github.com/dashhive/trust-vote-site/blob/master/README.md">
+            https://github.com/dashhive/trust-vote-site
+          </a>
+          .
+        </p>
+
+        <iframe
+          width="280"
+          height="158"
+          src="https://www.youtube-nocookie.com/embed?listType=playlist&list=PLZaEVINf2Bq98JzEWSX339MpOccqb4WZP"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+
+        <p>
+          <a href="https://www.youtube.com/playlist?list=PLZaEVINf2Bq98JzEWSX339MpOccqb4WZP">
+            https://www.youtube.com/playlist?list=PLZaEVINf2Bq98JzEWSX339MpOccqb4WZP
+          </a>
+        </p>
+
         <CandidateSelector
           label="1. Choose your candidate(s), (select as many as you want):"
           setMessage={this.setMessage}
