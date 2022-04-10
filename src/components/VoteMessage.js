@@ -139,11 +139,9 @@ class VoteMessage extends React.Component {
       return;
     }
 
-    // just warn
-    window.alert('that voting address is not a currently registered');
     this.setState({
       votingAddrMessage: '',
-      votingAddrError: 'that voting address is not a currently registered',
+      votingAddrError: 'That voting address is not currently registered.',
     });
   };
 
@@ -187,14 +185,14 @@ class VoteMessage extends React.Component {
           {this.state.votingAddrMessage.length > 0 && (
             <Message
               success
-              header="Note"
+              visible
               content={this.state.votingAddrMessage}
             />
           )}
           {this.state.votingAddrError.length > 0 && (
             <Message
               error
-              header="Warning"
+              visible
               content={this.state.votingAddrError}
             />
           )}
