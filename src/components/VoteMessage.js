@@ -11,7 +11,7 @@ import {
 } from 'semantic-ui-react';
 import copy from 'clipboard-copy';
 import dashcore from '@dashevo/dashcore-lib';
-import dtevote from '../apis/dtevote';
+import request from '../apis/dtevote';
 
 class VoteMessage extends React.Component {
   state = {
@@ -19,6 +19,8 @@ class VoteMessage extends React.Component {
     signature: '',
     successMessage: '',
     errorMessage: '',
+    votingAddrMessage: '',
+    votingAddrError: '',
   };
 
   copyToClipboard = (event) => {
@@ -74,37 +76,73 @@ class VoteMessage extends React.Component {
       return this.setState({ errorMessage: 'Invalid Message Signature' });
     }
 
-    // TODO: handle network errors / what if promise never returned?
-    try {
-      const response = await dtevote.post('/api/vote', {
+    // TODO: cancel early / what if promise waits for http timeout?
+
+    const resp = await request
+      .post('/api/vote', {
         addr: address,
         msg: payload,
         sig: signature,
+      })
+      .catch((err) => {
+        console.log(err);
+        this.setState({
+          errorMessage: err.message,
+        });
       });
+    if (!resp) {
+      return;
+    }
 
-      const { status } = response;
-      if (status >= 200 && status <= 299) {
-        console.log('success: ', response.data);
-        this.setState({
-          successMessage: response.data.message,
-        });
-      }
-      if (status >= 400 && status <= 599) {
-        console.log('error: ', response.data);
-        this.setState({
-          errorMessage: response.data.message,
-        });
-      }
-    } catch (err) {
-      console.log(err);
+    if (resp.status >= 200 && resp.status <= 299) {
+      console.log('success: ', resp.data);
       this.setState({
-        errorMessage: err.message,
+        successMessage: resp.data.message,
+      });
+    }
+    if (resp.status >= 400 && resp.status <= 599) {
+      console.log('error: ', resp.data);
+      this.setState({
+        errorMessage: resp.data.message,
       });
     }
   };
 
-  onAddressChange = (event) => {
-    this.setState({ address: event.target.value.trim() });
+  onAddressChange = async (event) => {
+    let addr = event.target.value.trim();
+    this.setState({ address: addr });
+
+    if (!addr) {
+      this.setState({ votingAddrMessage: '', votingAddrError: '' });
+      return;
+    }
+
+    const addrs = await request
+      .get('/api/votingaddresses')
+      .then(function (resp) {
+        return resp.data;
+      })
+      .catch((err) => {
+        console.log(err);
+        this.setState({
+          errorMessage: err.message,
+        });
+      });
+
+    if (addrs.includes(addr)) {
+      this.setState({
+        votingAddrMessage: 'Voting Address is Registered',
+        votingAddrError: '',
+      });
+      return;
+    }
+
+    // just warn
+    window.alert('that voting address is not a currently registered');
+    this.setState({
+      votingAddrMessage: '',
+      votingAddrError: 'that voting address is not a currently registered',
+    });
   };
 
   onSignatureChange = (event) => {
@@ -144,6 +182,20 @@ class VoteMessage extends React.Component {
             value={this.state.address}
             onChange={this.onAddressChange}
           />
+          {this.state.votingAddrMessage.length > 0 && (
+            <Message
+              success
+              header="Note"
+              content={this.state.votingAddrMessage}
+            />
+          )}
+          {this.state.votingAddrError.length > 0 && (
+            <Message
+              error
+              header="Warning"
+              content={this.state.votingAddrError}
+            />
+          )}
           <Input
             fluid
             placeholder="Message Signature"

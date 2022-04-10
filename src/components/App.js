@@ -74,13 +74,11 @@ class App extends React.Component {
             <Countdown target={votingEnd} />
           </strong>
         </p>
-
         <p>The Trust Protectors are not hosting or running this election.</p>
-
         <p>
           The{' '}
           <a href="https://github.com/dashhive/trust-vote-site/blob/master/README.md">
-            source
+            source code
           </a>{' '}
           of this election site is available at{' '}
           <a href="https://github.com/dashhive/trust-vote-site/blob/master/README.md">
@@ -88,7 +86,7 @@ class App extends React.Component {
           </a>
           .
         </p>
-
+        {/*
         <iframe
           width="280"
           height="158"
@@ -98,13 +96,15 @@ class App extends React.Component {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
         ></iframe>
-
+        */}
         <p>
+          For help <strong>signing votes and/or auditing</strong>, watch this
+          playlist:
+          <br />
           <a href="https://www.youtube.com/playlist?list=PLZaEVINf2Bq98JzEWSX339MpOccqb4WZP">
             https://www.youtube.com/playlist?list=PLZaEVINf2Bq98JzEWSX339MpOccqb4WZP
           </a>
         </p>
-
         <CandidateSelector
           label="1. Choose your candidate(s), (select as many as you want):"
           setMessage={this.setMessage}

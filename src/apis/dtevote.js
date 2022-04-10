@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default axios.create({
   // production deployment of https://github.com/dashevo/vote-collector
-  baseURL: process.env.PUBLIC_URL,
+  baseURL: process.env.REACT_APP_API_URL,
 
   // below for local development, for more info see:
   // https://github.com/dashevo/vote-collector
