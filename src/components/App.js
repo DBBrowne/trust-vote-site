@@ -5,18 +5,24 @@ import CandidateSelector from './CandidateSelector';
 import { ReactComponent as Logo } from '../logo.svg';
 import VoteMessage from './VoteMessage';
 
-const announcementUrl = process.env.REACT_APP_ANNOUNCMENT_URL;
+const announcementUrl = process.env.REACT_APP_ANNOUNCEMENT_URL;
+
 // voting end date, less 1 millisecond for display clarity.
 const votingEnd = new Date(new Date(process.env.REACT_APP_VOTING_END_DATE) - 1);
 
-const endDateOptions = { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' };
+const endDateOptions = {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+  timeZone: 'UTC',
+};
 const endTimeOptions = {
   hour: '2-digit',
   minute: '2-digit',
   second: '2-digit',
   hour12: false,
   timeZone: 'UTC',
-  timeZoneName: 'short', 
+  timeZoneName: 'short',
 };
 const votingEndDateString = votingEnd.toLocaleString('en-US', endDateOptions);
 const votingEndTimeString = votingEnd.toLocaleString('en-US', endTimeOptions);
@@ -64,7 +70,9 @@ class App extends React.Component {
         <p>
           Voting ends on {votingEndDateString}, at {votingEndTimeString}:
           <br />
-          <strong><Countdown target={votingEnd}/></strong>
+          <strong>
+            <Countdown target={votingEnd} />
+          </strong>
         </p>
 
         <p>The Trust Protectors are not hosting or running this election.</p>

@@ -2,7 +2,7 @@ import React from 'react';
 import { ReactComponent as Logo } from '../logo.svg';
 
 let candidacyFormUrl = process.env.REACT_APP_CANDIDACY_FORM_URL;
-let announcmentUrl = process.env.REACT_APP_ANNOUNCMENT_URL;
+let announcmentUrl = process.env.REACT_APP_ANNOUNCEMENT_URL;
 
 class Apply extends React.Component {
   state = { payload: '', voteMessageVisible: false, activeStep: 1 };
