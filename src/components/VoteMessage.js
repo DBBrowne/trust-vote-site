@@ -13,6 +13,20 @@ import copy from 'clipboard-copy';
 import dashcore from '@dashevo/dashcore-lib';
 import request from '../apis/dtevote';
 
+let votingAddresses = [];
+request
+  .get('/api/votingaddresses')
+  .then(function (resp) {
+    votingAddresses = resp.data;
+    return resp.data;
+  })
+  .catch((err) => {
+    console.log(err);
+    this.setState({
+      errorMessage: err.message,
+    });
+  });
+
 class VoteMessage extends React.Component {
   state = {
     address: '',
@@ -117,19 +131,7 @@ class VoteMessage extends React.Component {
       return;
     }
 
-    const addrs = await request
-      .get('/api/votingaddresses')
-      .then(function (resp) {
-        return resp.data;
-      })
-      .catch((err) => {
-        console.log(err);
-        this.setState({
-          errorMessage: err.message,
-        });
-      });
-
-    if (addrs.includes(addr)) {
+    if (votingAddresses.includes(addr)) {
       this.setState({
         votingAddrMessage: 'Voting Address is Registered',
         votingAddrError: '',
