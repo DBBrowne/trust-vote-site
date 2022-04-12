@@ -77,8 +77,15 @@ class CandidateSelector extends React.Component {
     this.props.setMessage(this.state.message);
   };
 
-  onCheckboxChange = (e, { value, checked }) => {
+  onCheckboxChange = (e) => {
+    // does not work, as semantic-ui-react's approach to checkboxes causes the checked DOM value to be changed only after a re-render, not at the input time.
+    console.log(e.target);
+    console.log(e.target.parentElement.firstChild);
+    console.log(e.target.parentElement.firstChild.value);
+    console.log(e.target.parentElement.firstChild.checked);
     // get a copy of the Set from state and manipulate accordingly
+    let value = e.target.parentElement.firstChild.value;
+    let checked = e.target.parentElement.firstChild.checked;
     let stateValue = this.state.value;
 
     if (checked === true) {
