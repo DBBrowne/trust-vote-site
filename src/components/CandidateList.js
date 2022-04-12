@@ -1,5 +1,4 @@
 import React from 'react';
-import { Checkbox } from 'semantic-ui-react';
 import './CandidateList.css';
 
 // TODO: consider making this controlled (e.g. "checked" is dependent based on
@@ -25,26 +24,21 @@ const CandidateList = (props) => {
       */
 
       return (
-        <Checkbox
+        <label
           key={handle}
-          value={handle}
-          label={{
-            children: (
-              <>
-                {label}
-                {link && (
-                  <>
-                    {' '}
-                    <a href={link} target={'profile-' + handle}>
-                      Profile
-                    </a>
-                  </>
-                )}
-              </>
-            ),
-          }}
-          onChange={onChange}
-        />
+        >
+          <input 
+            value={handle}
+            type="checkbox"
+            onChange={onChange}
+          />
+          {/* extra space or CSS change required to fit around CSS from sematic-ui-react*/}
+          &nbsp;
+          {label}
+          {link && (
+            <a href={link} target={'profile-' + handle}>&nbsp;Profile</a>
+          )}
+        </label>
       );
     }
   );
