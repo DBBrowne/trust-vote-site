@@ -71,7 +71,10 @@ class Closed extends React.Component {
           Voting results will be published on {announcePretty}:
           <br />
           <strong>
-            <Countdown target={announceEpoch} />
+            <Countdown
+              target={announceEpoch}
+              donemsg={'The Results are official!'}
+            />
           </strong>
         </p>
         <table>

@@ -2,9 +2,7 @@ import React from 'react';
 
 import countdown from '../../lib/countdown.js';
 
-const closedMessage = 'Voting is closed';
-
-export default function Countdown ({ target }){
+export default function Countdown ({ target, donemsg = 'Voting is closed' }){
   const getRemainingTime = countdown(target);
   const [stamp, setStamp] = React.useState(getRemainingTime());
 
@@ -27,14 +25,14 @@ export default function Countdown ({ target }){
       };
     },
     // Trigger this hook at mount, and when timeout changes
-    [stamp.timeout] 
+    [stamp.timeout]
   );
-  
+
   if (stamp.msg) {
     displayMessage = stamp.msg;
     console.info('Voting ends in', displayMessage);
   } else {
-    displayMessage = closedMessage;
+    displayMessage = donemsg;
     console.info(displayMessage);
   }
 
