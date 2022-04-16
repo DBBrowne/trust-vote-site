@@ -91,7 +91,7 @@ class Closed extends React.Component {
               let name = displayNames[tally.handle];
               let link = tally.link;
               if (!showVotes) {
-                link = '-';
+                link = '';
                 name = name
                   .split('')
                   .map(function () {
@@ -103,7 +103,10 @@ class Closed extends React.Component {
                 <tr>
                   <td>{tally.total}</td>
                   <td>{name}</td>
-                  <td>{link}</td>
+                  <td>
+                    {(showVotes && link && <a href={{ link }}>Profile</a>) ||
+                      '-'}
+                  </td>
                 </tr>
               );
             })}
