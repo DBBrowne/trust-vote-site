@@ -5,7 +5,7 @@
     "@dashevo/dashcore-lib": "^0.16.8",
     "axios": "^0.18.0",
     "clipboard-copy": "^2.0.1",
-    "dash-vote-tally": "github:dashhive/vote-tally#4abcdd345",
+    "dash-vote-tally": "github:dashhive/vote-tally#v1.1.0",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-scripts": "2.1.5",
