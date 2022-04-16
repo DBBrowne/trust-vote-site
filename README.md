@@ -121,6 +121,7 @@ dash-cli masternodelist json 'ENABLED'
    REACT_APP_VOTING_END_DATE='2022-04-15T00:00:00Z'
 
    # a unique vote identifier as part of the message hash
+   REACT_APP_VOTE_TAG='dte2022'
    REACT_APP_VOTE_PREFIX='dte2022-'
 
    REACT_APP_DASH_NETWORK='testnet'
