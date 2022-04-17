@@ -77,38 +77,43 @@ class Closed extends React.Component {
             />
           </strong>
         </p>
-        <table>
-          <thead>
-            <tr>
-              <th>Votes</th>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {me.state.tallies.map(function (tally) {
-              let displayNames = buildDisplayNameMap(me.state.candidates);
-              // show **** instead of name
-              let name = displayNames[tally.handle];
-              let link = tally.link;
-              if (!showVotes) {
-                link = '-';
-                name = name
-                  .split('')
-                  .map(function () {
-                    return '*';
-                  })
-                  .join('');
-              }
-              return (
+        {
+          !this.state.tallies.length ?
+            <p>Loading votes...</p>
+            :
+            <table>
+              <thead>
                 <tr>
-                  <td>{tally.total}</td>
-                  <td>{name}</td>
-                  <td>{link}</td>
+                  <th>Votes</th>
+                  <th>Name</th>
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
+              </thead>
+              <tbody>
+                {me.state.tallies.map(function (tally) {
+                  const displayNames = buildDisplayNameMap(me.state.candidates);
+                  // show **** instead of name
+                  let name = displayNames[tally.handle];
+                  let link = tally.link;
+                  if (!showVotes) {
+                    link = '-';
+                    name = name
+                      .split('')
+                      .map(function () {
+                        return '*';
+                      })
+                      .join('');
+                  }
+                  return (
+                    <tr key={name}>
+                      <td>{tally.total}</td>
+                      <td>{name}</td>
+                      <td>{link}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+        }
       </div>
     );
   }
