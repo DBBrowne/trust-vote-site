@@ -22,9 +22,6 @@ request
   })
   .catch((err) => {
     console.log(err);
-    this.setState({
-      errorMessage: err.message,
-    });
   });
 
 class VoteMessage extends React.Component {

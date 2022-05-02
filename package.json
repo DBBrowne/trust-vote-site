@@ -12,8 +12,10 @@
     "semantic-ui-react": "^0.85.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && rsync -avhP --delete ./build/ ./dist/ ",
+    "start": "node ./esbuildConfig/esServe.config.js",
+    "watch": "node ./esbuildConfig/esWatch.config.js",
+    "build": "node ./esbuildConfig/esBuild.config.js",
+    "rbuild": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -26,5 +28,10 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "0.14.38",
+    "esbuild-plugin-svgr": "1.0.1",
+    "node-stdlib-browser": "1.2.0"
+  }
 }

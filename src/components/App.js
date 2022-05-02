@@ -2,7 +2,7 @@ import React from 'react';
 
 import Countdown from './countdown/Countdown';
 import CandidateSelector from './CandidateSelector';
-import { ReactComponent as Logo } from '../logo.svg';
+import Logo from '../logo.svg';
 import VoteMessage from './VoteMessage';
 
 const announcementUrl = process.env.REACT_APP_ANNOUNCEMENT_URL;

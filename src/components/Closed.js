@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as Logo } from '../logo.svg';
+import Logo from '../logo.svg';
 import Countdown from './countdown/Countdown';
 import { Message } from 'semantic-ui-react';
 import { DashTrustVote } from 'dash-vote-tally';
