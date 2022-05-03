@@ -12,10 +12,9 @@
     "semantic-ui-react": "^0.85.0"
   },
   "scripts": {
-    "start": "node ./esbuildConfig/esServe.config.js",
-    "watch": "node ./esbuildConfig/esWatch.config.js",
-    "build": "node ./esbuildConfig/esBuild.config.js",
-    "rbuild": "react-scripts build",
+    "start": "node ./esbuild/esbuild.serve.js",
+    "watch": "node ./esbuild/esbuild.watch.js",
+    "build": "node ./esbuild/esbuild.build.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
